@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: i18316588 <i18316588@student.42.fr>        +#+  +:+       +#+         #
+#    By: nblackie <nblackie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/30 12:29:44 by ocathern          #+#    #+#              #
-#    Updated: 2020/08/04 07:32:06 by i18316588        ###   ########.fr        #
+#    Updated: 2020/09/01 19:18:04 by nblackie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ LIBF = ./includes/libft
 INCL = ./src/printf.h
 
 SRCS = ./src/main.c ./src/flags.c ./src/handler.c ./src/istrue.c ./src/setup.c\
-./src/logger.c ./src/int.c ./src/utils.c ./src/intgeneral.c
-
+./src/logger.c ./src/utils.c ./src/general.c ./src/int.c ./src/unsignedint.c\
+./src/signedint.c src/octal.c ./src/octalcore.c ./src/hex.c ./src/hexcore.c\
+./src/char.c ./src/float.c
 OBJ =  $(subst .c,.o,$(SRCS))
 
 CCFL = gcc

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: i18316588 <i18316588@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nblackie <nblackie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 14:00:30 by i18316588         #+#    #+#             */
-/*   Updated: 2020/07/28 07:45:37 by i18316588        ###   ########.fr       */
+/*   Updated: 2020/08/30 00:19:47 by nblackie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Выводит символ заданное кол-во раз и возвращает это кол-во
 // Метод позволяет экономить строки ввиду ананизма с ограничением в 25 штук
-int nputchar(char c, int num)
+int		nputchar(char c, int num)
 {
     int result;
     
@@ -25,4 +25,22 @@ int nputchar(char c, int num)
         --num;
     }
     return (result);
+}
+
+int		nputstr(char *str, int num)
+{
+	int		len;
+	int		i;
+	
+	len = ft_strlen(str);
+	if (len < num)
+		num = len;
+	i = 0;
+	while (i < num)
+	{
+		ft_putchar(*str);
+		str++;
+		i++;
+	}
+	return (num);
 }
