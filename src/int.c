@@ -32,7 +32,8 @@ int	print_int(va_list args, t_format format)
 	int val;
 	int count;
 	char sign;
-	
+
+	count = 0;
 	val = va_arg(args, int);
 	sign = get_sign(format, val);
 	if (val == 0 && format.precision == 0)

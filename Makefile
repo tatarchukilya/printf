@@ -12,35 +12,45 @@
 
 NAME = printf
 
-LNAM = libft.a
+SRCDIR = ./src/
+SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
+SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
+INC = ./include/
+BUILDDIR = ./objs/
+BUILDOBJS = $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
 
-LIBF = ./includes/libft
+LIBDIR = ./include/libft/
+LIBFT = ./include/libft/libft.a
+LIBINC = ./include/libft/
 
-INCL = ./src/printf.h
+CC = gcc
+# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra
 
-SRCS = ./src/main.c ./src/flags.c ./src/handler.c ./src/istrue.c ./src/setup.c\
-./src/logger.c ./src/int.c ./src/utils.c ./src/intgeneral.c
+DEBUG = -g
 
-OBJ =  $(subst .c,.o,$(SRCS))
+all: $(BUILDDIR) $(LIBFT) $(NAME)
 
-CCFL = gcc
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
-all: $(NAME)
+$(BUILDDIR)%.o:$(SRCDIR)%.c
+	$(CC) $(CFLAGS) -I$(LIBINC) -I$(INC) -o $@ -c $<
 
-$(NAME): $(OBJ)
-	@make -C $(LIBF) re
-	@$(CCFL) -L $(LIBF) -lft $(SRCS) -I $(LIBF) -I $(INCL) -o $(NAME) -g
-%.o: %.c
-	@$(CCFL) -I $(INCL) $< -c -o $@ -g
+$(NAME): $(BUILDOBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(BUILDOBJS) $(LIBFT)
+
+$(LIBFT):
+	make -C $(LIBDIR)
 
 clean:
-	@make -C $(LIBF) clean
-	@/bin/rm -f ./src/*.o
+	rm -rf $(BUILDDIR)
+	make -C $(LIBDIR) clean
 
 fclean: clean
-	@make -C $(LIBF) fclean
-	@/bin/rm -f $(NAME)
+	rm -rf $(NAME)
+	make -C $(LIBDIR) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean clean re

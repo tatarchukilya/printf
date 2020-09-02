@@ -13,8 +13,9 @@
 #ifndef READ_H
 #define READ_H
 
+#include <stdio.h>
 #include <stdarg.h>
-#include "../includes/libft/libft.h"
+#include "../include/libft/libft.h"
 
 # define PI 3.141592653589793238462643383279
 # define EMPTY -1
