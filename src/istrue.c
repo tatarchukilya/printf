@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   istrue.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: i18316588 <i18316588@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nblackie <nblackie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 21:02:21 by nblackie          #+#    #+#             */
-/*   Updated: 2020/07/04 13:13:15 by i18316588        ###   ########.fr       */
+/*   Updated: 2020/08/30 00:20:30 by nblackie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,9 @@ int		is_flag_empty(t_flags flags)
 {
 	return (flags.minus == 0 && flags.minus == 0 && flags.sharp == 0 && 
 			flags.space == 0 && flags.zero == 0);
+}
+
+int		is_int_empty(unsigned long long val, t_format format)
+{
+	return (!val && !format.precision);
 }
