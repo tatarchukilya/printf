@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include "../include/libft/libft.h"
+#include "./libft/libft.h"
 
 # define PI 3.141592653589793238462643383279
 # define EMPTY -1
@@ -25,7 +25,7 @@
 typedef enum s_bool
 {
 	false,
-	true  
+	true
 }           t_bool;
 
 /*  Для параметров используестя две сущности:

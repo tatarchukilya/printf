@@ -1,56 +1,34 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: i18316588 <i18316588@student.42.fr>        +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/30 12:29:44 by ocathern          #+#    #+#              #
-#    Updated: 2020/08/04 07:32:06 by i18316588        ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = printf
+NAME	= libftprintf.a
 
 SRCDIR = ./src/
 SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
 SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
-INC = ./include/
-BUILDDIR = ./objs/
-BUILDOBJS = $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
+OBJ		= $(SRC:.c=.o)
 
-LIBDIR = ./include/libft/
-LIBFT = ./include/libft/libft.a
-LIBINC = ./include/libft/
+INC     = ./include
+LIBFT	= ./include/libft
 
-CC = gcc
-# CFLAGS = -Wall -Werror -Wextra
-CFLAGS = -Wall -Wextra
+CC		= gcc
+CFLAGS  = -Wall -Wextra -Werror
+AR      = ar
+ARFLAGS = rcs
 
-DEBUG = -g
+all: $(NAME)
 
-all: $(BUILDDIR) $(LIBFT) $(NAME)
+$(NAME): $(OBJ)
+	@make -C $(LIBFT)
+	@cp $(LIBFT)/libft.a $(NAME)
+	@$(AR) rc $(NAME) $(OBJ)
 
-$(BUILDDIR):
-	mkdir -p $(BUILDDIR)
-
-$(BUILDDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) -I$(LIBINC) -I$(INC) -o $@ -c $<
-
-$(NAME): $(BUILDOBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(BUILDOBJS) $(LIBFT)
-
-$(LIBFT):
-	make -C $(LIBDIR)
+%.o: %.c
+	@$(CC) -o $@ $(CFLAGS) -I $(INC) -c $<
 
 clean:
-	rm -rf $(BUILDDIR)
-	make -C $(LIBDIR) clean
+	@/bin/rm -f $(OBJ)
+	@make -C $(LIBFT) clean
 
 fclean: clean
-	rm -rf $(NAME)
-	make -C $(LIBDIR) fclean
+	@/bin/rm -f $(NAME)
+	@make -C $(LIBFT) fclean
 
 re: fclean all
-
-.PHONY: all fclean clean re

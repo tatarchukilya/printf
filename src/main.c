@@ -45,7 +45,6 @@ size_t	print_str(char **str)
 size_t handele_format_print_value(char **str, va_list args)
 {
 	t_format	format;
-	char 	*temp;
 	
 	(*str)++;
 	if (**str == '%')
@@ -57,7 +56,7 @@ size_t handele_format_print_value(char **str, va_list args)
 	format = handle_format(str);
 	//log_format(&format);
 	size_t i = (g_fn[format.type](args, format));
-	return (0);
+	return (i);
 }
 
 /**
@@ -88,13 +87,13 @@ int		ft_printf(char *fmt, ...)
 	return (count);
 }
 
-int		main(void)
-{
-	//ft_printf("first %-+21.07hc second %% fird % s", '0', "1");
-	//printf("\nfirst%-+5.10d", 5);
-	int c = -2147483648;
-	//int i = pr2(-2147483648, 0);
-	int i = ft_printf("ft_printf:%.d", 0);
-	int l = printf("\n   printf:%.d", 0);
-	printf(" lenght: %d", l - 11);
-}
+// int		main(void)
+// {
+// 	//ft_printf("first %-+21.07hc second %% fird % s", '0', "1");
+// 	//printf("\nfirst%-+5.10d", 5);
+// 	int c = -2147483648;
+// 	//int i = pr2(-2147483648, 0);
+// 	int i = ft_printf("ft_printf:%.d", 0);
+// 	int l = printf("\n   printf:%.d", 0);
+// 	printf(" lenght: %d", l - 11);
+// }
