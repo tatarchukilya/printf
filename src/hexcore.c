@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hexcore.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nblackie <nblackie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 18:52:00 by nblackie          #+#    #+#             */
-/*   Updated: 2020/08/30 00:20:16 by nblackie         ###   ########.fr       */
+/*   Updated: 2020/09/03 20:43:52 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	print_hex_val(unsigned long long val, int *count, t_format f, char *c)
 			*count += nputchar('0', prec);
 		}
 	}
-	nputchar(f.type == x ? g_low_hex[val % 16] : g_up_hex[val % 16], 1);
+	nputchar(f.type == X ? g_up_hex[val % 16] : g_low_hex[val % 16] , 1);
 }
 
 int		switch_hex(va_list args, t_format format)

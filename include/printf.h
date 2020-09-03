@@ -6,7 +6,7 @@
 /*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 15:56:16 by i18316588         #+#    #+#             */
-/*   Updated: 2020/09/03 14:14:30 by ocathern         ###   ########.fr       */
+/*   Updated: 2020/09/03 20:36:30 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <math.h>
 #include <stdarg.h>
-#include "./libft/libft.h"
 
 # define PI 3.141592653589793238462643383279
 # define EMPTY -1
@@ -43,7 +43,6 @@ typedef enum s_size
 
 const static char g_flags[] = {'-', '+', '0', '#', ' ', '\0'};
 
-/// Флаги. Если 1 - установлен, 0 - нет
 typedef struct  s_flags
 {
 	t_bool minus;
@@ -53,12 +52,9 @@ typedef struct  s_flags
 	t_bool space;
 }               t_flags;
 
-// Вожможные варианты обозначений типа
 const static char g_types[] = {'c', 'C', 'd', 'i', 'o', 'u', 'x', 'X',
 'f', 'F', 'p', 's', 'S', '\0'};
 
-// Множество вариантов типов, по сути тип - это индекс, по которому дергается 
-// функция из массива g_fn
 typedef enum s_type
 {
 	c,
@@ -77,7 +73,6 @@ typedef enum s_type
 	EMPTY_TYPE
 }           t_type;
 
-// Все данные о том, в каком формате выводить данные
 typedef struct      s_format
 {
 	t_flags			flags;
@@ -87,12 +82,9 @@ typedef struct      s_format
 	t_type          type;
 }                   t_format;
 
-// Прототип всех функций выода
 typedef int (* print_abstract)(va_list, t_format);
 
-// Перечень функций вывода по типам данных (упакованы в g_fn)
-// Под капотом у каждой должен быть выбор функции типа print_abstract
-// С поправкой на параметр size
+int			ft_printf(char *fmt, ...);
 
 void		print_str_num(char *str, int num, t_bool is_line_break);
 
@@ -122,7 +114,8 @@ int			print_string(va_list args, t_format format);
 
 int     	print_float(va_list args, t_format format);
 
-// Массив функций печати для каждого типа
+int			print_pointer(va_list args, t_format format);
+
 const static print_abstract g_fn[NUMBER_OF_TYPES] = {
 	&print_char,			//c
 	&print_char, 			//C
@@ -134,13 +127,11 @@ const static print_abstract g_fn[NUMBER_OF_TYPES] = {
 	&switch_hex,			//X
 	&print_float,			//f
 	&print_stub,			//F
-	&print_stub,			//p
+	&print_pointer,			//p
 	&print_string, 			//s
 	&print_string,			//S
 };
 
-// Фекции вывода значения пипа INT с поправкой на параметр size
-// Упакованы в g_int
 int			print_h_int(va_list args, t_format format);
 
 int			print_hh_int(va_list args, t_format format);
@@ -151,8 +142,6 @@ int			print_ll_int(va_list args, t_format format);
 
 int			print_int( va_list args, t_format format);
 
-// Фекции вывода значения пипа UNSIGNED INT с поправкой на параметр size
-// Упакованы в g_un_int
 int			print_un_ll_int(va_list args, t_format format);
 
 int			print_un_l_int(va_list args, t_format format);
@@ -162,9 +151,6 @@ int			print_un_h_int(va_list args, t_format format);
 int			print_un_hh_int(va_list args, t_format format);
 
 int			print_un_int( va_list args, t_format format);
-
-// Функции для вывода значений octal с поправкой на параметр size
-// Упакованы в g_octal
 
 int     	print_h_octal(va_list args, t_format format);
 

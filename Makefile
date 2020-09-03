@@ -9,8 +9,7 @@ INC     = ./include
 LIBFT	= ./include/libft
 
 CC		= gcc
-# CFLAGS  = -Wall -Wextra -Werror
-CFLAGS  = -Wall -Wextra
+CFLAGS  = -Wall -Wextra -Werror
 AR      = ar
 ARFLAGS = rcs
 
