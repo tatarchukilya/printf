@@ -12,26 +12,24 @@
 
 #include "printf.h"
 
-// Выводит символ заданное кол-во раз и возвращает это кол-во
-// Метод позволяет экономить строки ввиду ананизма с ограничением в 25 штук
-int		nputchar(char c, int num)
+int	nputchar(char c, int num)
 {
-    int result;
-    
-    result = num >= 0 ? num : 0;
-    while (num > 0)
-    {
-        ft_putchar(c);
-        --num;
-    }
-    return (result);
+	int	result;
+
+	result = num >= 0 ? num : 0;
+	while (num > 0)
+	{
+		ft_putchar(c);
+		--num;
+	}
+	return (result);
 }
 
-int		nputstr(char *str, int num)
+int	nputstr(char *str, int num)
 {
 	int		len;
 	int		i;
-	
+
 	len = ft_strlen(str);
 	if (len < num)
 		num = len;

@@ -13,16 +13,11 @@
 #include "printf.h"
 #include <stdio.h>
 
-/**
- * Принмает указатель на место в строке
- * Считает кол-во символов до знака % (начинается описание типа) или до '\0'
- * Выводит на консоль полученное кол-во символов
-*/
 size_t	print_str(char **str)
 {
 	char	*temp;
 	size_t	len;
-	
+
 	len = 0;
 	temp = *str;
 	while (**str != '%')
@@ -36,17 +31,10 @@ size_t	print_str(char **str)
 	return (len);
 }
 
-/** 
- * Заполняет структуру t_format данными из стороки *str (fmt). Затем вызывает 
- * функцию для форматированного вывода значения из va_list на консоль согласно 
- * формату t_format. t_format.type - это элемент множества, т.е. int - 
- * индекс по которому дергается функция из массива g_fn (printf.h)
-*/
-size_t handele_format_print_value(char **str, va_list args)
+size_t	handele_format_print_value(char **str, va_list args)
 {
 	t_format	format;
-	// char 		*temp;
-	
+
 	(*str)++;
 	if (**str == '%')
 	{
@@ -58,18 +46,11 @@ size_t handele_format_print_value(char **str, va_list args)
 	return (g_fn[format.type](args, format));
 }
 
-/**
- * Непосредственно основная функция. Запускает цикл, который прерывается на символе 
- * конца строки. Чередует две функции выше: печатает строку до знака "%", затем 
- * выводит на печать отформатированное значение из аргументов. Результат работы каждой функции 
- * добавляет к счетчику. После засершения цикла выводит на консоль остаток строки, 
- * завершает va_list и возвращает количество напечатанных символов (count).
-*/
 int		ft_printf(char *fmt, ...)
 {
 	va_list	args;
 	size_t	count;
-	
+
 	count = 0;
 	va_start(args, fmt);
 	while (true)
@@ -85,18 +66,3 @@ int		ft_printf(char *fmt, ...)
 	ft_putstr(fmt);
 	return (count);
 }
-
-// int		main(void)
-// {
-// 	//ft_printf("first %-+21.07hc second %% fird % s", '0', "1");
-// 	//printf("\nfirst%-+5.10d", 5);
-// 	char c = 8;
-// 	long long k = 257;
-// 	double f = -32.0000000000076868;
-// 	const char *s = "string";
-// 	//int i = pr2(-2147483648, 0);
-// 	int i = ft_printf("1_printf:% +8.150f$", f);
-// 	printf(" lenght: %d\n", i);
-// 	int l = printf("2_printf:% +8.75f$", f);
-// 	printf(" lenght: %d", l);
-// }

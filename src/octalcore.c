@@ -22,41 +22,40 @@ const static print_abstract g_octal[6] =
 	&print_octal
 };
 
-int     switch_octal(va_list args, t_format format)
+int		switch_octal(va_list args, t_format format)
 {
 	t_size size;
 
 	size = ll;
-	
 	while (size <= EMPTY_SIZE)
 	{
 		if (size == format.size)
 			return (g_octal[size](args, format));
 		size++;
 	}
-	return (g_octal[size](args, format)); 
+	return (g_octal[size](args, format));
 }
 
-void    print_oсtal_val(unsigned long long val, int *count, t_format f, char c)
+void	print_oсtal_val(unsigned long long val, int *count, t_format f, char c)
 {
-    int prec;
+	int	prec;
 
-    ++(*count);
-    if (val > 7)
-        print_oсtal_val(val / 8, count, f, c);
-    else
-    {
-        if (f.flags.zero)
-            print_zero_flag(count, f, c);
-        else
-        {
-            prec = ((f.precision - *count) < 0) ? 0
-                : f.precision - *count - (c != '\0');
-            if (!f.flags.minus)
+	++(*count);
+	if (val > 7)
+		print_oсtal_val(val / 8, count, f, c);
+	else
+	{
+		if (f.flags.zero)
+			print_zero_flag(count, f, c);
+		else
+		{
+			prec = ((f.precision - *count) < 0) ? 0
+			: f.precision - *count - (c != '\0');
+			if (!f.flags.minus)
 				*count += nputchar(' ', f.width - prec - *count - (c != '\0'));
 			*count += nputchar(c, c != '\0');
 			*count += nputchar('0', prec);
-        }
-    }
-    nputchar(val % 8 + '0', 1);
+		}
+	}
+	nputchar(val % 8 + '0', 1);
 }

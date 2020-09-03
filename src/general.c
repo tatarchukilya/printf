@@ -12,24 +12,23 @@
 
 #include "printf.h"
 
-void	print_zero_flag(int *count, t_format format, char sign) {
+void	print_zero_flag(int *count, t_format format, char sign)
+{
 	*count += nputchar(sign, sign != '\0');
 	*count += nputchar('0', format.width - *count);
 	*count += nputchar('0', format.precision - *count);
 }
 
-// Если точность указана как 0 и преобразуемое значение равно 0, 
-// результат не будет содержать символы
-
-int	print_empty(t_format format, char sign)
+int		print_empty(t_format format, char sign)
 {
 	int	count;
-	
+
 	if (format.flags.minus)
 	{
 		count = nputchar(sign, sign != '\0');
 		count += nputchar(' ', format.width - (sign != '\0'));
-	} else
+	}
+	else
 	{
 		count = nputchar(' ', format.width - (sign != '\0'));
 		count += nputchar(sign, sign != '\0');
@@ -37,33 +36,7 @@ int	print_empty(t_format format, char sign)
 	return (count);
 }
 
-char *get_prefix(t_format format)
+char	*get_prefix(t_format format)
 {
-	return format.type == x ? "0x" : "0X";
+	return (format.type == x ? "0x" : "0X");
 }
-
-// int	print_empty_hex(t_format format, char *sign)
-// {
-// 	int	count;
-	
-// 	if (format.flags.minus)
-// 	{
-// 		ft_putstr(sign);
-// 		count += ft_strlen(sign);
-// 		count += nputchar(' ', format.width - ft_strlen(sign));
-// 	} else
-// 	{
-// 		count = nputchar(' ', format.width - ft_strlen(sign));
-// 		ft_putstr(sign);
-// 		count += ft_strlen(sign);
-// 	}
-// 	return (count);
-// }
-
-// void	print_zero_flag_hex(int *count, t_format format, char *sign)
-// {
-// 	ft_putstr(sign);
-// 	*count += ft_strlen(sign);
-// 	*count += nputchar('0', format.width - *count);
-// 	*count += nputchar('0', format.precision - *count);
-// }

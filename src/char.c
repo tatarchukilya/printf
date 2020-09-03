@@ -12,12 +12,12 @@
 
 #include "printf.h"
 
-int     print_char(va_list args, t_format format)
+int	print_char(va_list args, t_format format)
 {
 	char	val;
 	int		count;
 
-	val = (char) va_arg(args, int);
+	val = (char)va_arg(args, int);
 	if (format.flags.minus)
 		format.flags.zero = false;
 	count = 0;
@@ -31,7 +31,7 @@ int     print_char(va_list args, t_format format)
 	return (count);
 }
 
-int		print_string(va_list args, t_format format)
+int	print_string(va_list args, t_format format)
 {
 	char	*val;
 	int		count;

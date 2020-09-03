@@ -12,20 +12,20 @@
 
 #include "printf.h"
 
-void setup_flags(t_flags *flags)
+void	setup_flags(t_flags *flags)
 {
-    flags->minus = false;
+	flags->minus = false;
 	flags->plus = false;
 	flags->sharp = false;
 	flags->space = false;
 	flags->zero = false;
 }
 
-void setup_format(t_format *format)
+void	setup_format(t_format *format)
 {
-    setup_flags(&(format->flags));
-    format->width = EMPTY;
-    format->precision = EMPTY;
-    format->size = EMPTY_SIZE;
-    format->type = EMPTY_TYPE;
+	setup_flags(&(format->flags));
+	format->width = EMPTY;
+	format->precision = EMPTY;
+	format->size = EMPTY_SIZE;
+	format->type = EMPTY_TYPE;
 }

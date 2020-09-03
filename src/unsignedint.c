@@ -12,14 +12,14 @@
 
 #include "printf.h"
 
-int		print_un_int(va_list args, t_format format)
+int	print_un_int(va_list args, t_format format)
 {
-	unsigned int 	val;
+	unsigned int	val;
 	int				count;
 
-	val = (unsigned int) va_arg(args, unsigned int);
+	val = (unsigned int)va_arg(args, unsigned int);
 	if (val == 0 && format.precision == 0)
-		return print_empty(format, '\0');
+		return (print_empty(format, '\0'));
 	if (format.flags.minus || format.precision != EMPTY)
 		format.flags.zero = false;
 	count = 0;
@@ -29,70 +29,70 @@ int		print_un_int(va_list args, t_format format)
 	return (count);
 }
 
-int print_un_h_int(va_list args, t_format format)
+int	print_un_h_int(va_list args, t_format format)
 {
-	unsigned short int  val;
-	int                 count;
+	unsigned short int	val;
+	int					count;
 
 	val = (unsigned short int)va_arg(args, unsigned int);
 	if (val == 0 && format.precision == 0)
-		return print_empty(format, '\0');
+		return (print_empty(format, '\0'));
 	if (format.flags.minus || format.precision != EMPTY)
 		format.flags.zero = false;
 	count = 0;
 	print_int_val(val, &count, format, '\0');
 	if (format.flags.minus)
 		count += nputchar(' ', format.width - count);
-	return count;
+	return (count);
 }
 
-int		print_un_hh_int(va_list args, t_format format)
+int	print_un_hh_int(va_list args, t_format format)
 {
-	unsigned short int  val;
-	int                 count;
+	unsigned short int	val;
+	int					count;
 
 	val = (unsigned char)va_arg(args, unsigned int);
 	if (val == 0 && format.precision == 0)
-		return print_empty(format, '\0');
+		return (print_empty(format, '\0'));
 	if (format.flags.minus || format.precision != EMPTY)
 		format.flags.zero = false;
 	count = 0;
 	print_int_val(val, &count, format, '\0');
 	if (format.flags.minus)
 		count += nputchar(' ', format.width - count);
-	return count;
+	return (count);
 }
 
-int print_un_l_int(va_list args, t_format format)
+int	print_un_l_int(va_list args, t_format format)
 {
-	unsigned long int   val;
-	int                 count;
+	unsigned long int	val;
+	int					count;
 
 	val = (unsigned long int)va_arg(args, unsigned long int);
 	if (val == 0 && format.precision == 0)
-		return print_empty(format, '\0');
+		return (print_empty(format, '\0'));
 	if (format.flags.minus || format.precision != EMPTY)
 		format.flags.zero = false;
 	count = 0;
 	print_int_val(val, &count, format, '\0');
 	if (format.flags.minus)
 		count += nputchar(' ', format.width - count);
-	return count;
+	return (count);
 }
 
-int print_un_ll_int(va_list args, t_format format)
+int	print_un_ll_int(va_list args, t_format format)
 {
-	unsigned long int   val;
-	int                 count;
+	unsigned long int	val;
+	int					count;
 
 	val = (unsigned long int)va_arg(args, unsigned long int);
 	if (val == 0 && format.precision == 0)
-		return print_empty(format, '\0');
+		return (print_empty(format, '\0'));
 	if (format.flags.minus || format.precision != EMPTY)
 		format.flags.zero = false;
 	count = 0;
 	print_int_val(val, &count, format, '\0');
 	if (format.flags.minus)
 		count += nputchar(' ', format.width - count);
-	return count;
+	return (count);
 }

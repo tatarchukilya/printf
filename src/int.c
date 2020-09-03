@@ -12,13 +12,13 @@
 
 #include "printf.h"
 
-const static print_abstract g_un_int[6] = 
+const static print_abstract g_un_int[6] =
 {
 	&print_un_ll_int,
 	&print_un_hh_int,
 	&print_un_l_int,
 	&print_un_h_int,
-	&print_un_int, //Флаг L Реализовать общий метод для случая, если тип не указан
+	&print_un_int,
 	&print_un_int
 };
 
@@ -28,12 +28,11 @@ const static print_abstract g_int[6] =
 	&print_hh_int,
 	&print_l_int,
 	&print_h_int,
-	&print_int,		// Реализовать общий метод для случая, если тип не указан
+	&print_int,
 	&print_int
 };
 
-// Возвращает знак '-', '+' или ' ' для типа int
-char get_sign_int(t_format format, long long num)
+char	get_sign_int(t_format format, long long num)
 {
 	if (num < 0)
 		return ('-');
@@ -44,14 +43,9 @@ char get_sign_int(t_format format, long long num)
 	return ('\0');
 }
 
-// Функция выводит значение, точность и знак. Если флаг минус не указан,
-// то выводится еще и ширина, если указан, то ширина добивается пробелами
-// после вывода значения в функции print_int файла int.c
-// Функция рекурсивная, каждый вызов означает, что будет напечатан еще один
-// символ, поэтому счетчик инкрементируется на входе
 void	print_int_val(unsigned long long val, int *count, t_format f, char c)
 {
-	int prec;
+	int	prec;
 
 	++(*count);
 	if (val > 10)
@@ -78,13 +72,12 @@ int		switch_int(va_list args, t_format format)
 	print_abstract	fn;
 
 	size = ll;
-	
 	while (size <= EMPTY_SIZE)
 	{
 		if (size == format.size)
-			break;
+			break ;
 		size++;
 	}
 	fn = format.type == u ? g_un_int[size] : g_int[size];
-	return (fn(args, format)); 
+	return (fn(args, format));
 }

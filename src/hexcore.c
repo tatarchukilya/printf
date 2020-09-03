@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-const static print_abstract g_hex[6] = 
+const static print_abstract g_hex[6] =
 {
 	&print_ll_hex,
 	&print_hh_hex,
@@ -22,16 +22,18 @@ const static print_abstract g_hex[6] =
 	&print_hex
 };
 
-int	print_empty_hex(t_format format, char *sign)
+int		print_empty_hex(t_format format, char *sign)
 {
-	int	count = 0;
-	
+	int	count;
+
+	count = 0;
 	if (format.flags.minus)
 	{
 		ft_putstr(sign);
 		count += ft_strlen(sign);
 		count += nputchar(' ', format.width - ft_strlen(sign));
-	} else
+	}
+	else
 	{
 		count = nputchar(' ', format.width - ft_strlen(sign));
 		ft_putstr(sign);
@@ -50,17 +52,17 @@ void	print_zero_flag_hex(int *count, t_format format, char *sign)
 
 void	print_hex_val(unsigned long long val, int *count, t_format f, char *c)
 {
-    int		prec;
-	
+	int	prec;
+
 	++(*count);
 	if (val > 15)
-		print_hex_val(val/16, count, f, c);
-	else 
+		print_hex_val(val / 16, count, f, c);
+	else
 	{
 		if (f.flags.zero)
-            print_zero_flag_hex(count, f, c);
+			print_zero_flag_hex(count, f, c);
 		else
-		{	
+		{
 			prec = ((f.precision - *count) < 0) ? 0
 				: f.precision - *count;
 			if (!f.flags.minus)
@@ -79,13 +81,12 @@ int		switch_hex(va_list args, t_format format)
 	print_abstract	fn;
 
 	size = ll;
-	
 	while (size <= EMPTY_SIZE)
 	{
 		if (size == format.size)
-			break;
+			break ;
 		size++;
 	}
 	fn = g_hex[size];
-	return (fn(args, format)); 
+	return (fn(args, format));
 }
