@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nblackie <nblackie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 14:00:30 by i18316588         #+#    #+#             */
-/*   Updated: 2020/08/30 00:19:47 by nblackie         ###   ########.fr       */
+/*   Updated: 2020/09/03 14:13:24 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	nputchar(char c, int num)
+int		nputchar(char c, int num)
 {
 	int	result;
 
@@ -25,7 +25,7 @@ int	nputchar(char c, int num)
 	return (result);
 }
 
-int	nputstr(char *str, int num)
+int		nputstr(char *str, int num)
 {
 	int		len;
 	int		i;
@@ -41,4 +41,14 @@ int	nputstr(char *str, int num)
 		i++;
 	}
 	return (num);
+}
+
+int		ft_isdigit(int ch)
+{
+	return (ch >= '0' && ch <= '9');
+}
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }

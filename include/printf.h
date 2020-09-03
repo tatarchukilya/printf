@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: i18316588 <i18316588@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 15:56:16 by i18316588         #+#    #+#             */
-/*   Updated: 2020/09/02 17:48:34 by i18316588        ###   ########.fr       */
+/*   Updated: 2020/09/03 14:14:30 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 #define PRINTF_H
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <stdarg.h>
@@ -212,5 +213,17 @@ int			is_int_empty(unsigned long long val, t_format format);
 int			print_empty_hex(t_format format, char *sign);
 
 void		print_zero_flag_hex(int *count, t_format format, char *sign);
+
+int			ft_isdigit(int ch);
+
+size_t		ft_strlen(const char *s);
+
+void		ft_putnbr(int n);
+
+void		ft_putchar(char c);
+
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+
+void		ft_putstr(char const *s);
 
 #endif

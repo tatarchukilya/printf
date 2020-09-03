@@ -17,8 +17,6 @@ ARFLAGS = rcs
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C $(LIBFT)
-	@cp $(LIBFT)/libft.a $(NAME)
 	@$(AR) rc $(NAME) $(OBJ)
 
 %.o: %.c
@@ -26,10 +24,8 @@ $(NAME): $(OBJ)
 
 clean:
 	@/bin/rm -f $(OBJ)
-	@make -C $(LIBFT) clean
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@make -C $(LIBFT) fclean
 
 re: fclean all
