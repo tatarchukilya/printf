@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   int.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: i18316588 <i18316588@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 11:42:35 by i18316588         #+#    #+#             */
-/*   Updated: 2020/09/02 18:28:28 by i18316588        ###   ########.fr       */
+/*   Updated: 2020/09/04 14:29:39 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void	print_int_val(unsigned long long val, int *count, t_format f, char c)
 {
 	int	prec;
 
+	// printf("VAL: %llu\n", val);
 	++(*count);
-	if (val > 10)
+	if (val > 9)
 		print_int_val(val / 10, count, f, c);
 	else
 	{
@@ -78,6 +79,7 @@ int		switch_int(va_list args, t_format format)
 			break ;
 		size++;
 	}
+	// printf("FORMAT TYPE: %u\n FORMAT SIZE: %u\n", format.type, format.size);
 	fn = format.type == u ? g_un_int[size] : g_int[size];
 	return (fn(args, format));
 }

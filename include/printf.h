@@ -6,7 +6,7 @@
 /*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 15:56:16 by i18316588         #+#    #+#             */
-/*   Updated: 2020/09/03 20:36:30 by ocathern         ###   ########.fr       */
+/*   Updated: 2020/09/04 19:13:22 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <math.h>
 #include <stdarg.h>
 
 # define PI 3.141592653589793238462643383279
 # define EMPTY -1
-# define NUMBER_OF_TYPES 13
+# define NUMBER_OF_TYPES 15
 # define ABS 
 
 const static char *g_low_hex = "0123456789abcdef";
@@ -53,7 +52,7 @@ typedef struct  s_flags
 }               t_flags;
 
 const static char g_types[] = {'c', 'C', 'd', 'i', 'o', 'u', 'x', 'X',
-'f', 'F', 'p', 's', 'S', '\0'};
+'f', 'F', 'p', 's', 'S', '%', '\0'};
 
 typedef enum s_type
 {
@@ -70,6 +69,7 @@ typedef enum s_type
 	p,
 	s,
 	S,
+	y,
 	EMPTY_TYPE
 }           t_type;
 
@@ -91,6 +91,8 @@ void		print_str_num(char *str, int num, t_bool is_line_break);
 int			print_empty(t_format format, char sign);
 
 int			switch_int(va_list args, t_format format);
+
+int			print_float(va_list args, t_format format);
 
 int			switch_octal(va_list args, t_format format);
 
@@ -116,6 +118,10 @@ int     	print_float(va_list args, t_format format);
 
 int			print_pointer(va_list args, t_format format);
 
+int			print_parcent(va_list args, t_format format);
+
+int			print_empty_type(va_list args, t_format format);
+
 const static print_abstract g_fn[NUMBER_OF_TYPES] = {
 	&print_char,			//c
 	&print_char, 			//C
@@ -126,10 +132,12 @@ const static print_abstract g_fn[NUMBER_OF_TYPES] = {
 	&switch_hex,			//x
 	&switch_hex,			//X
 	&print_float,			//f
-	&print_stub,			//F
+	&print_float,			//F
 	&print_pointer,			//p
 	&print_string, 			//s
 	&print_string,			//S
+	&print_parcent,			//%
+	&print_empty_type
 };
 
 int			print_h_int(va_list args, t_format format);
@@ -211,5 +219,11 @@ void		ft_putchar(char c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 void		ft_putstr(char const *s);
+
+int			abs(int j);
+
+long		labs(long j);
+
+long double	fabsl(long double j);
 
 #endif

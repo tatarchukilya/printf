@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   char.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nblackie <nblackie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 21:24:53 by nblackie          #+#    #+#             */
-/*   Updated: 2020/08/30 00:20:00 by nblackie         ###   ########.fr       */
+/*   Updated: 2020/09/04 14:07:35 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	print_string(va_list args, t_format format)
 	int		len;
 
 	val = va_arg(args, char *);
+	val = (val == NULL) ? "(null)" : val;
 	len = ft_strlen(val);
 	if (format.precision != EMPTY)
 		len = format.precision > len ? len : format.precision;

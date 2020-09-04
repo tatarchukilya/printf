@@ -6,7 +6,7 @@
 /*   By: ocathern <ocathern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 20:33:28 by ocathern          #+#    #+#             */
-/*   Updated: 2020/09/03 20:38:17 by ocathern         ###   ########.fr       */
+/*   Updated: 2020/09/04 14:02:38 by ocathern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 int	print_pointer(va_list args, t_format format)
 {
-	int	count;
+	unsigned long long	val;
+	int					count;
+	char				*sign;
 
-	ft_putstr("0x");
-	count = 2 + switch_hex(args, format);
+	val = (unsigned long long)va_arg(args, long long int);
+	sign = "0x";
+	if (val == 0 && format.precision == 0)
+		return (print_empty_hex(format, sign));
+	if (format.flags.minus || format.precision != EMPTY)
+		format.flags.zero = false;
+	count = 0;
+	print_hex_val(val, &count, format, sign);
+	if (format.flags.minus)
+		count += nputchar(' ', format.width - count);
 	return (count);
 }
